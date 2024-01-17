@@ -17,18 +17,30 @@ const Carts = () => {
 
 useEffect(()=>{
   setTotalPriceDB(cartDB.reduce((sum, item) => sum + item.price, 0))
+    // console.log(totalPriceDB)
+},[cartDB])
+
+useEffect(()=>{
   setTotalPriceLocal(cartLocal.reduce((sum, item) => sum + item.price, 0))
-},[])
+  console.log(totalPriceLocal)
+},[openCouponInput])
 
   const handleCoupon=()=>{
     setOpenCouponInput(true)
   }
   const handleCheckCopoun=()=>{
     if(copoun==="JASSHOP2024"){
-      setTotalPriceDB(totalPriceDB * 0.7)
+      if(email){
+        setTotalPriceDB(totalPriceDB * 0.7)
+      }
+      
+    else{
       setTotalPriceLocal(totalPriceLocal * 0.7)
+    }
+      
+
       setIsTokenUsed(false)
-      console.log(totalPriceLocal)
+    
     }
   }
 
