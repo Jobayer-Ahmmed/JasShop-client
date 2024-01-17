@@ -34,17 +34,17 @@ const Discount = () => {
   return (
     <div
       data-aos="fade-down"
-      className="flex justify-evenly items-center text-red-600 bg-red-500 w-[90%] lg:w-3/5 mx-auto my-myMargin h-40 rounded-ss-full"
+      className="md:pr-10 lg:px-4 py-3 flex justify-center  md:justify-evenly gap-7 items-center text-red-600 bg-red-500 w-[90%] lg:w-3/5 h-24 md:h-32 lg:h-40 mx-auto my-myMargin  rounded-ss-full"
     >
-      <div className="bg-white w-48 h-32 rounded-full flex justify-center items-center discount-number">
-        <p className="text-4xl font-amita font-bold">30% off</p>
+      <div className="bg-white md:-ml-12 lg:ml-0 w-24 md:w-48 h-16 md:h-24 lg:h-32 rounded-full flex justify-center items-center discount-number">
+        <p className="text-xl md:text-4xl font-amita font-bold">30% off</p>
       </div>
-      <div>
-        <p className="text-4xl font-amita font-bold text-white ml-20">
+      <div className="w-40">
+        <p className="md:w-72 text-xl md:text-4xl font-amita font-bold text-white">
           With the coupon
         </p>
-<div className="flex gap-5 ml-20 mt-5">
-<p className="text-white text-2xl">{textToCopy}</p>
+<div className="flex gap-5 md:mt-5"> 
+<p className="text-white text-lg md:text-2xl">{textToCopy}</p>
         <button className="text-2xl text-red-900" onClick={handleCopyClick}>{copied ? "Copied!" : <MdContentCopy />}</button>
 </div>
       </div>

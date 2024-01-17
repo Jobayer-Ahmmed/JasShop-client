@@ -66,7 +66,7 @@ const Login = () => {
             {...register("email", { required: true })}
             placeholder="Email"
             type="email"
-            className="w-80 h-10 px-2 rounded"
+            className="w-64 md:w-80 h-10 px-2 rounded"
           />
           <br />
           {errors.email && (
@@ -77,7 +77,7 @@ const Login = () => {
             {...register("password", { required: true })}
             placeholder="Password"
             type={passwordVisiblity}
-            className="w-80 h-10 px-2 rounded "
+            className="w-64 md:w-80 h-10 px-2 rounded "
           />
           <TbEye
             onClick={handlePassword}

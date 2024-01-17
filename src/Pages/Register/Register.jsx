@@ -126,7 +126,7 @@ const Register = () => {
             {...register("username", { required: true })}
             placeholder="Username"
             type="text"
-            className="w-80 h-10 px-2 rounded "
+            className="w-64 md:w-80 h-10 px-2 rounded "
           />{" "}
           <br />
           {errors.username && (
@@ -137,7 +137,7 @@ const Register = () => {
             {...register("password", { required: true })}
             placeholder="Password"
             type={passwordVisiblity}
-            className="w-80 h-10 px-2 rounded "
+            className="w-64 md:w-80 h-10 px-2 rounded "
           />
           <TbEye onClick={handlePassword} className={` inline -ml-7 text-2xl ${passwordTrigger?'hidden':'' }`}/>
           <TbEyeClosed  onClick={handlePassword}  className={`inline -ml-7 text-2xl ${passwordTrigger?'':'hidden' }`}/>
@@ -150,7 +150,7 @@ const Register = () => {
             {...register("confirm_password", { required: true })}
             placeholder="Confirm Password"
             type={confirmPasswordVisiblity}
-            className="w-80 h-10 px-2 rounded"
+            className="w-64 md:w-80 h-10 px-2 rounded"
           />
           <TbEye onClick={handleConfirmPassword} className={` inline -ml-7 text-2xl ${confirmPasswordTrigger?'hidden':'' }`}/>
           <TbEyeClosed  onClick={handleConfirmPassword}  className={`inline -ml-7 text-2xl ${confirmPasswordTrigger?'':'hidden' }`}/>
@@ -163,7 +163,7 @@ const Register = () => {
             {...register("email", { required: true })}
             placeholder="Email"
             type="email"
-            className="w-80 h-10 px-2 rounded"
+            className="w-64 md:w-80 h-10 px-2 rounded"
           />
           <br />
           {errors.email && (
@@ -175,7 +175,7 @@ const Register = () => {
           <input
             {...register("userImage")}
             type="file"
-            className="file-input file-input-bordered w-80 h-10 text-white mb-6"
+            className="file-input file-input-bordered w-64 md:w-80 h-10 text-white mb-6"
           />{" "}
           <br />
           <label className="text-xl">

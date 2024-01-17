@@ -13,17 +13,37 @@
   
 }
 @keyframes moveRight {
+  0% {
+    transform: rotate(-20deg);
+  }
+  100% {
+    transform: rotate(20deg);
+  }
+}
+
+
+
+.secondaryMenu .active{
+    background-color: orangered;
+}
+
+@media (min-width: 1024px) {
+  @keyframes moveRight {
     0% {
       left: 0;
     }
     100% {
       left: 200px;
     }
-  }
-
-
-  
-
-.secondaryMenu .active{
-    background-color: orangered;
+  }  
+}
+@media (min-width: 768px) {
+  @keyframes moveRight {
+    0% {
+      left: 0;
+    }
+    100% {
+      left: 140px;
+    }
+  }  
 }
