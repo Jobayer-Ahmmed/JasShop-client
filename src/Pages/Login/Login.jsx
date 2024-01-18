@@ -11,7 +11,7 @@ const Login = () => {
   const [passwordVisiblity, setPasswordVisiblity] = useState("password");
   const [passwordTrigger, setPasswordTrigger] = useState(false);
   const navigate = useNavigate()
-  const {login} = useContext(Context)
+  const {login, postLocalDataInDB} = useContext(Context)
 
   const {
     register,
@@ -26,6 +26,7 @@ const Login = () => {
 
     login(email, password)
     .then(()=>{
+      postLocalDataInDB(email)
       Swal.fire({
         position: "center",
         icon: "success",

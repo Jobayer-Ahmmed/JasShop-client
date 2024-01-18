@@ -22,7 +22,7 @@ const image_upload_api = `https://api.imgbb.com/1/upload?key=a7c057afc407de14aaf
 
 
 const Register = () => {
-  const { createUser } = useContext(Context);
+  const { createUser, postLocalDataInDB } = useContext(Context);
   const navigate = useNavigate();
   const [passwordVisiblity, setPasswordVisiblity] = useState("password")
   const [confirmPasswordVisiblity, setConfirmPasswordVisiblity] = useState("password")
@@ -59,6 +59,7 @@ const Register = () => {
                 photoURL: res.data.data.display_url
                 })
               .then(()=>{
+                postLocalDataInDB(email)
                 Swal.fire({
                   position: "center",
                   icon: "success",

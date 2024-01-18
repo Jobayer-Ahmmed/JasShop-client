@@ -5,6 +5,8 @@ import SecondaryBanner from "../SecondaryBanner/SecondaryBanner"
 import Discount from "../Discount/Discount"
 
 const Home = () => {
+
+
   return (
     <div className="-z-20">
       <Banner/>
