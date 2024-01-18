@@ -6,8 +6,6 @@ import "swiper/css/navigation";
 
 import a from "../../../assets/a.jpg";
 import { NavLink } from "react-router-dom";
-import { useState } from "react";
-
 import fashion from "../../../assets/category/fashion.PNG"
 import beauty from "../../../assets/category/beauty.PNG"
 import electronics from "../../../assets/category/electronics.PNG"
@@ -15,10 +13,7 @@ import furniture from "../../../assets/category/furniture.PNG"
 
 
 const secondaryBanner = () => {
-  // const [item, setItem] = useState("")
-  const handleSecondaryMenu=(props)=>{
 
-  }
   return (
     <div className="px-[10%] lg:px-20 my-xPadding secondaryMenu">
       <div className="">
@@ -39,13 +34,13 @@ const secondaryBanner = () => {
             </NavLink>
           </SwiperSlide>
           <SwiperSlide>
-            <NavLink to="/fashion">
+            <NavLink to="/beauty">
               <img src={beauty} alt="" className="w-32 h-28"  />
               <p>Beauty</p>
             </NavLink>
           </SwiperSlide>
           <SwiperSlide>
-            <NavLink to="/fashion">
+            <NavLink to="/electronics">
               <img src={electronics} alt="" className="w-32 h-28"  />
               <p>Electronics</p>
             </NavLink>

@@ -4,18 +4,19 @@ import { useState } from "react";
 import Card from "../../Shared/Card";
 
 
-const Fashion = () => {
-  const [fashionData, setFashionData] = useState()
-  const pathAxios = useAxios()
+
+const Beauty = () => {
+  const [beautyData, setBeautyData] = useState()
+  const rootAxios = useAxios()
   useEffect(()=>{
-    pathAxios.get("/fashion")
-    .then(res=>setFashionData(res.data))
+    rootAxios.get("/beauty")
+    .then(res=>setBeautyData(res.data))
   },[])
   return (
     <div className="my-myMargin  px-5 lg:px-20 ">
       <div className="bg-orange-800 p-10 rounded-lg grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-6 lg:gap-10">
         {
-          fashionData?.map(data=> <Card key={data._id} data={data}/>)
+          beautyData?.map(data=> <Card key={data._id} data={data}/>)
         }
 
       </div>
@@ -23,4 +24,4 @@ const Fashion = () => {
   );
 };
 
-export default Fashion;
+export default Beauty;

@@ -1,10 +1,10 @@
 import { useContext, useState } from "react";
-import { Context } from "../../context/AuthProvider";
+import { Context } from "../context/AuthProvider";
 import {
   getLocalstorageData,
   setLocalstorageData,
-} from "../../localstorage/localstorage";
-import useAxios from "../../hooks/useAxios/useAxios";
+} from "../localstorage/localstorage";
+import useAxios from "../hooks/useAxios/useAxios";
 
 const Card = ({ data }) => {
   const [piece, setPiece] = useState(1);

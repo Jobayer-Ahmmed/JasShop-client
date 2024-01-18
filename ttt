@@ -1,0 +1,75 @@
+[
+    {
+      "type": "Mobile",
+      "image": "https://i.ibb.co/stmKYmP/electronics-4.png",
+      "size": "6.5 inches",
+      "available_number": 50,
+      "price": 599,
+      "feedback": [
+        "Sleek design and large display!",
+        "Fast and responsive performance.",
+        "Great value for the features provided."
+      ]
+    },
+    {
+      "type": "Fan",
+      "image": "https://i.ibb.co/ySR7Wvj/electronics-2.png",
+      "size": "18 inches",
+      "available_number": 30,
+      "price": 200,
+      "feedback": [
+        "Powerful airflow and silent operation.",
+        "Adjustable settings for personalized comfort.",
+        "A must-have for hot summer days!"
+      ]
+    },
+    {
+      "type": "Laptop",
+      "image": "https://i.ibb.co/wdwvC8Q/electronics-1.png",
+      "size": "15.6 inches",
+      "available_number": 25,
+      "price": 1050,
+      "feedback": [
+        "Slim and lightweight, perfect for on-the-go.",
+        "High-performance specifications for multitasking.",
+        "Great price for the performance offered."
+      ]
+    },
+    {
+      "type": "AC",
+      "image": "https://i.ibb.co/j4DDhgB/electronics-3.png",
+      "size": "24 inches",
+      "available_number": 15,
+      "price": 1499,
+      "feedback": [
+        "Excellent cooling performance with energy efficiency.",
+        "Durable construction for long-lasting use.",
+        "A game-changer for summer comfort."
+      ]
+    },
+    {
+      "type": "Headphones",
+      "image": "https://i.ibb.co/m6yWRs8/electronics-5.png",
+      "size": "Over-ear",
+      "available_number": 40,
+      "price": 89,
+      "feedback": [
+        "Immersive sound quality with deep bass.",
+        "Comfortable design for extended use.",
+        "Worth the investment for music lovers."
+      ]
+    },
+    {
+      "type": "SmartTV",
+      "image": "https://i.ibb.co/PWpVPK9/electronics-6.png",
+      "size": "55 inches",
+      "available_number": 20,
+      "price": 999,
+      "feedback": [
+        "Impressive display quality with smart features.",
+        "Sleek and modern design with customizable watch faces.",
+        "A great addition to any entertainment setup."
+      ]
+    }
+  ]
+  

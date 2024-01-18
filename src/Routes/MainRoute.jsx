@@ -5,6 +5,8 @@ import Fashion from "../Pages/Fashion/Fashion";
 import Register from "../Pages/Register/Register.jsx"
 import Login from "../Pages/Login/Login.jsx";
 import Carts from "../Pages/Cart/Carts.jsx";
+import Beauty from "../Pages/Beauty/Beauty.jsx";
+import Electronics from "../Pages/Electronics/Electronics.jsx";
 
 
 
@@ -20,6 +22,14 @@ const routes = createBrowserRouter([
                     {
                         path:"/fashion",
                         element:<Fashion/>
+                    },
+                    {
+                        path:"/beauty",
+                        element:<Beauty/>
+                    },
+                    {
+                        path:"/electronics",
+                        element:<Electronics/>
                     }
                 ]
             },
