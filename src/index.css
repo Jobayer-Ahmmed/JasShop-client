@@ -4,7 +4,9 @@
 @tailwind utilities;
 
 
-
+.secondary-banner .active{
+  border: 5px solid  rgb(154 52 18);
+}
 
 .discount-number{
         position: relative;
