@@ -36,14 +36,16 @@ const Register = () => {
     formState: { errors },
   } = useForm();
 
+  const getCaptcha = watch("captcha")
 
   const onSubmit = (data) => {
     const { email, password, confirm_password, username } = data;
     const imageFile = { image: data.userImage[0] };
 
     if (password === confirm_password) {
-      
-      createUser(email, password).then(() => {
+      if(validateCaptcha(getCaptcha)){
+        console.log("captha is successfull")
+        createUser(email, password).then(() => {
           // for image insert in imgbb
           axios.post(image_upload_api, imageFile, {
             headers: {
@@ -79,6 +81,7 @@ const Register = () => {
 
 
       });
+      }
     } else {
       // setIsConfirm(true);
       console.log("Password doesnt match")
