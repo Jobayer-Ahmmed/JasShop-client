@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 
 const SecondaryBanner = () => {
   return (
-    <div className="flex justify-center gap-3 md:gap-7 secondary-banner">
+    <div className="flex justify-center gap-3 md:gap-7 secondary-banner mb-titleMargin">
       <NavLink className="rounded-lg border-2 border-transparent" to="/fashion">
         <img
           className="w-24 h-16 md:w-32 md:h-24 rounded-lg"
