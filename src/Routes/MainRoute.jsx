@@ -7,6 +7,7 @@ import Login from "../Pages/Login/Login.jsx";
 import Carts from "../Pages/Cart/Carts.jsx";
 import Beauty from "../Pages/Beauty/Beauty.jsx";
 import Electronics from "../Pages/Electronics/Electronics.jsx";
+import ErrorPage from "../Pages/Error/ErrorPage.jsx";
 
 
 
@@ -14,6 +15,7 @@ const routes = createBrowserRouter([
     {
         path:"/",
         element:<MainLayout/>,
+        errorElement:<ErrorPage/>,
         children:[
             {
                 path:"/",
