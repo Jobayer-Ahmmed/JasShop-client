@@ -2,7 +2,8 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 import goods from "../../../assets/goods.jpg"
 import female from "../../../assets/female.jpg"
-import male from "../../../assets/male.jpg"
+import shirt from "../../../assets/shirt.jpg"
+import watch from "../../../assets/watch.jpg"
 
 
 const Banner = () => {
@@ -15,9 +16,12 @@ const Banner = () => {
     <div>
         <img src={female} />
     </div>
-    {/* <div>
-        <img src={male} />
-    </div> */}
+    <div>
+        <img src={shirt} />
+    </div>
+    <div>
+        <img src={watch} />
+    </div>
 </Carousel>
 </div>
   )
