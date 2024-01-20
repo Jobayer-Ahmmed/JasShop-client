@@ -3,7 +3,7 @@ import jasshop from "../assets/jasshop.PNG";
 
 const Footer = () => {
   return (
-    <footer className="footer flex md:justify-evenly p-10 bg-neutral text-neutral-content">
+    <footer className=" flex md:justify-evenly p-10 bg-neutral text-neutral-content">
       <aside>
         <img className="w-20" src={jasshop} alt="" />
         <p>

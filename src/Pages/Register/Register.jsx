@@ -15,8 +15,8 @@ import {
   validateCaptcha,
 } from "react-simple-captcha";
 
-const image_upload_key = "a7c057afc407de14aafd26a5cbcd25f3";
-const image_upload_api = `https://api.imgbb.com/1/upload?key=a7c057afc407de14aafd26a5cbcd25f3`;
+const image_upload_key = import.meta.env.VITE_image_uploaded_key
+const image_upload_api = `https://api.imgbb.com/1/upload?key=${image_upload_key}`;
 
 const Register = () => {
   const { createUser, postLocalDataInDB } = useContext(Context);
@@ -35,8 +35,6 @@ const Register = () => {
   } = useForm();
 
   const getCaptcha = watch("captcha");
-  const password = watch("password");
-  console.log(password);
 
   const onSubmit = (data) => {
     const { email, password, confirm_password, username } = data;
@@ -133,16 +131,16 @@ const Register = () => {
           <br />
           <input
             
-            type="password"
+            type={passwordVisiblity}
             placeholder="Password"
             {...register("password", {
               required: "Password is required",
               minLength: {
-                value: 8,
-                message: "Password must be at least 8 characters long",
+                value: 6,
+                message: "Password must be at least 6 characters long",
               },
               pattern: {
-                value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*?&]{8,}$/,
+                value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*?&]{6,}$/,
                 message:
                   "Password must contain at least one letter and one number",
               },
@@ -150,15 +148,15 @@ const Register = () => {
             className="w-64 md:w-80 h-10 px-2 rounded mt-2"
           />
           <TbEye
-            onClick={handleConfirmPassword}
+            onClick={handlePassword}
             className={` inline -ml-7 text-2xl ${
-              confirmPasswordTrigger ? "hidden" : ""
+              passwordTrigger ? "hidden" : ""
             }`}
           />
           <TbEyeClosed
-            onClick={handleConfirmPassword}
+            onClick={handlePassword}
             className={`inline -ml-7 text-2xl ${
-              confirmPasswordTrigger ? "" : "hidden"
+              passwordTrigger ? "" : "hidden"
             }`}
           />
           {errors.password && (
@@ -167,16 +165,16 @@ const Register = () => {
           <br />
           <input
             
-            type="password"
+            type={confirmPasswordVisiblity}
             placeholder="Confirm Password"
             {...register("confirm_password", {
               required: "Confirm Password is required",
               minLength: {
-                value: 8,
+                value: 6,
                 message: "Confirm Password must be at least 6 characters long",
               },
               pattern: {
-                value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*?&]{8,}$/,
+                value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*?&]{6,}$/,
                 message:
                   "Confirm Password must contain at least one letter and one number",
               },
@@ -207,7 +205,7 @@ const Register = () => {
             })}
             className="w-64 md:w-80 h-10 px-2 rounded  mt-2"
           />
-          {errors.username && (
+          {errors.email && (
             <p className="text-red-700">{errors.email.message}</p>
           )}
           <br />
@@ -215,15 +213,15 @@ const Register = () => {
           <br />
           <input
             type="file"
-            {...register("username", {
+            {...register("userImage", {
             })}
             className="file-input file-input-bordered w-64 md:w-80 h-10 text-white"
           />
 
           <br />
-          <p className="text-xl mt-3">
+          <div className="text-xl mt-3">
             <LoadCanvasTemplate />
-          </p>
+          </div>
           <br />
           <input
             {...register("captcha", { required: true })}

@@ -46,8 +46,10 @@ useEffect(()=>{
   }
 
   return (
-    <div className="py-yPadding w-4/5 lg:w-3/5 mx-auto">
-      <div className="w-full flex flex-col-reverse lg:flex-row items-center lg:items-start justify-center gap-10">
+    <div className="min-h-[80vh] py-yPadding w-4/5 lg:w-3/5 mx-auto">
+      {
+        (cartDB|| cartLocal) ? <h3 className="text-center text-4xl font-bold mt-[10%]">Your cart is empty</h3> :
+        <div className="w-full flex flex-col-reverse lg:flex-row items-center lg:items-start justify-center gap-10">
         <div className="w-full">
           {email
             ? cartDB?.map((data) => <Cart key={data._id} data={data} />)
@@ -65,6 +67,8 @@ useEffect(()=>{
         </div>
         </div>
       </div>
+      }
+
     </div>
   );
 };

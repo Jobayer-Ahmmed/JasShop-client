@@ -5,15 +5,14 @@
 
 
 .secondary-banner .active{
-  border: 5px solid  rgb(154 52 18);
+  border: 5px solid  rgb(21 94 117);
 }
 
 .discount-number{
         position: relative;
         animation: moveRight 2s ease-in-out infinite alternate;
-
-  
 }
+
 @keyframes moveRight {
   0% {
     transform: rotate(-20deg);

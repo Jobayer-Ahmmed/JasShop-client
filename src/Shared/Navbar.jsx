@@ -12,7 +12,7 @@ import jasshop from "../assets/jasshop.PNG"
 
 const Navbar = () => {
   const [toggle, setToggle] = useState(true); 
-  const { newUser, logOut, cartArray, cartAddCount, } = useContext(Context);
+  const { newUser, logOut } = useContext(Context);
   const navigate = useNavigate();
   const cartDB = useCartData()
   const cartLocal = getLocalstorageData()
@@ -37,15 +37,6 @@ const Navbar = () => {
         <NavLink>Home</NavLink>
       </li>
       <li data-aos="zoom-in">
-        <NavLink>About</NavLink>
-      </li>
-      <li data-aos="zoom-in">
-        <NavLink>Contact</NavLink>
-      </li>
-      <li data-aos="zoom-in">
-        <NavLink>Service</NavLink>
-      </li>
-      <li data-aos="zoom-in">
         <NavLink to="/login">Login</NavLink>
       </li>
       <li data-aos="zoom-in">
@@ -54,7 +45,7 @@ const Navbar = () => {
     </>
   );
   return (
-    <div className="fixed lg:px-20 px-[10%] flex items-center justify-between bg-cyan-800 w-full h-16 text-white  z-50 ">
+    <div className="fixed lg:px-20 px-[10%] flex items-center justify-between bg-opacity-70 bg-priColor w-full h-16 text-white  z-50 ">
       <div className=" flex items-center gap-5">
         <div className="block lg:hidden">
           {toggle ? (
@@ -71,7 +62,7 @@ const Navbar = () => {
       </div>
       <div>
         <ul
-          className={` z-10 absolute left-5  flex flex-col gap-5 rounded text-center p-10 bg-cyan-700 text-xl font-medium ${
+          className={` z-10 absolute left-5  flex flex-col gap-5 rounded text-center p-10 bg-priColor text-xl font-medium ${
             toggle
               ? "absolute -top-96 transition-[0.9]"
               : "  top-16 transition-[0.7]"
