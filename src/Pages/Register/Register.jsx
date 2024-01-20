@@ -8,26 +8,24 @@ import auth from "../../firebase/firebase.config";
 import Swal from "sweetalert2";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import {TbEye, TbEyeClosed} from "react-icons/tb"
+import { TbEye, TbEyeClosed } from "react-icons/tb";
 import {
   LoadCanvasTemplate,
   loadCaptchaEnginge,
   validateCaptcha,
 } from "react-simple-captcha";
 
-
-
 const image_upload_key = "a7c057afc407de14aafd26a5cbcd25f3";
 const image_upload_api = `https://api.imgbb.com/1/upload?key=a7c057afc407de14aafd26a5cbcd25f3`;
-
 
 const Register = () => {
   const { createUser, postLocalDataInDB } = useContext(Context);
   const navigate = useNavigate();
-  const [passwordVisiblity, setPasswordVisiblity] = useState("password")
-  const [confirmPasswordVisiblity, setConfirmPasswordVisiblity] = useState("password")
-  const [passwordTrigger, setPasswordTrigger] = useState(false)
-  const [confirmPasswordTrigger, setConfirmPasswordTrigger] = useState(false)
+  const [passwordVisiblity, setPasswordVisiblity] = useState("password");
+  const [confirmPasswordVisiblity, setConfirmPasswordVisiblity] =
+    useState("password");
+  const [passwordTrigger, setPasswordTrigger] = useState(false);
+  const [confirmPasswordTrigger, setConfirmPasswordTrigger] = useState(false);
 
   const {
     register,
@@ -36,78 +34,73 @@ const Register = () => {
     formState: { errors },
   } = useForm();
 
-  const getCaptcha = watch("captcha")
+  const getCaptcha = watch("captcha");
+  const password = watch("password");
+  console.log(password);
 
   const onSubmit = (data) => {
     const { email, password, confirm_password, username } = data;
     const imageFile = { image: data.userImage[0] };
 
     if (password === confirm_password) {
-      if(validateCaptcha(getCaptcha)){
-        console.log("captha is successfull")
+      if (validateCaptcha(getCaptcha)) {
+        console.log("captha is successfull");
         createUser(email, password).then(() => {
           // for image insert in imgbb
-          axios.post(image_upload_api, imageFile, {
-            headers: {
-              "content-type": "multipart/form-data",
-            },
-          })
-          .then((res) => {
-            console.log(res.data.data.display_url);
-            // for pushing name & image in firebase
-            if(res){
-              updateProfile(auth.currentUser, {
-                displayName: username, 
-                photoURL: res.data.data.display_url
-                })
-              .then(()=>{
-                postLocalDataInDB(email)
-                Swal.fire({
-                  position: "center",
-                  icon: "success",
-                  title: "Registration successfull",
-                  showConfirmButton: false,
-                  timer: 1500
-                })
+          axios
+            .post(image_upload_api, imageFile, {
+              headers: {
+                "content-type": "multipart/form-data",
+              },
+            })
+            .then((res) => {
+              console.log(res.data.data.display_url);
+              // for pushing name & image in firebase
+              if (res) {
+                updateProfile(auth.currentUser, {
+                  displayName: username,
+                  photoURL: res.data.data.display_url,
+                }).then(() => {
+                  postLocalDataInDB(email);
+                  Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "Registration successfull",
+                    showConfirmButton: false,
+                    timer: 1500,
+                  });
 
-                navigate("/")
-                
-              })
-            }
+                  navigate("/");
+                });
+              }
 
               // pushing data in database
-
-          });
-
-
-      });
+            });
+        });
       }
     } else {
       // setIsConfirm(true);
-      console.log("Password doesnt match")
+      console.log("Password doesnt match");
     }
   };
 
-  const  handlePassword=()=>{
-    
-    setPasswordTrigger(!passwordTrigger)
-    if(passwordTrigger){
-      setPasswordVisiblity("password")
+  const handlePassword = () => {
+    setPasswordTrigger(!passwordTrigger);
+    if (passwordTrigger) {
+      setPasswordVisiblity("password");
+    } else {
+      setPasswordVisiblity("text");
     }
-    else{
-      setPasswordVisiblity("text")
+  };
+  const handleConfirmPassword = () => {
+    console.log(confirmPasswordTrigger);
+    setConfirmPasswordTrigger(!confirmPasswordTrigger);
+    if (confirmPasswordTrigger) {
+      setConfirmPasswordVisiblity("password");
+    } else {
+      setConfirmPasswordVisiblity("text");
     }
-  }
-  const  handleConfirmPassword=()=>{
-    console.log(confirmPasswordTrigger)
-    setConfirmPasswordTrigger(!confirmPasswordTrigger)
-    if(confirmPasswordTrigger){
-      setConfirmPasswordVisiblity("password")
-    }
-    else{
-      setConfirmPasswordVisiblity("text")
-    }
-  }
+  };
 
   useEffect(() => {
     loadCaptchaEnginge(6);
@@ -127,68 +120,114 @@ const Register = () => {
         </h2>
         <form onSubmit={handleSubmit(onSubmit)} className="pt-3">
           <input
-            {...register("username", { required: true })}
-            placeholder="Username"
             type="text"
+            placeholder="Username"
+            {...register("username", {
+              required: "Username is required",
+            })}
             className="w-64 md:w-80 h-10 px-2 rounded "
-          />{" "}
-          <br />
+          />
           {errors.username && (
-            <span className="text-red-700">Username is required</span>
+            <p className="text-red-700">{errors.username.message}</p>
           )}
           <br />
           <input
-            {...register("password", { required: true })}
+            
+            type="password"
             placeholder="Password"
-            type={passwordVisiblity}
-            className="w-64 md:w-80 h-10 px-2 rounded "
+            {...register("password", {
+              required: "Password is required",
+              minLength: {
+                value: 8,
+                message: "Password must be at least 8 characters long",
+              },
+              pattern: {
+                value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*?&]{8,}$/,
+                message:
+                  "Password must contain at least one letter and one number",
+              },
+            })}
+            className="w-64 md:w-80 h-10 px-2 rounded mt-2"
           />
-          <TbEye onClick={handlePassword} className={` inline -ml-7 text-2xl ${passwordTrigger?'hidden':'' }`}/>
-          <TbEyeClosed  onClick={handlePassword}  className={`inline -ml-7 text-2xl ${passwordTrigger?'':'hidden' }`}/>
-          <br />
+          <TbEye
+            onClick={handleConfirmPassword}
+            className={` inline -ml-7 text-2xl ${
+              confirmPasswordTrigger ? "hidden" : ""
+            }`}
+          />
+          <TbEyeClosed
+            onClick={handleConfirmPassword}
+            className={`inline -ml-7 text-2xl ${
+              confirmPasswordTrigger ? "" : "hidden"
+            }`}
+          />
           {errors.password && (
-            <span className="text-red-700">Password is required</span>
+            <p className="text-red-700">{errors.password.message}</p>
           )}
           <br />
           <input
-            {...register("confirm_password", { required: true })}
+            
+            type="password"
             placeholder="Confirm Password"
-            type={confirmPasswordVisiblity}
-            className="w-64 md:w-80 h-10 px-2 rounded"
+            {...register("confirm_password", {
+              required: "Confirm Password is required",
+              minLength: {
+                value: 8,
+                message: "Confirm Password must be at least 6 characters long",
+              },
+              pattern: {
+                value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*?&]{8,}$/,
+                message:
+                  "Confirm Password must contain at least one letter and one number",
+              },
+            })}
+            className="w-64 md:w-80 h-10 px-2 rounded mt-2"
           />
-          <TbEye onClick={handleConfirmPassword} className={` inline -ml-7 text-2xl ${confirmPasswordTrigger?'hidden':'' }`}/>
-          <TbEyeClosed  onClick={handleConfirmPassword}  className={`inline -ml-7 text-2xl ${confirmPasswordTrigger?'':'hidden' }`}/>
-          <br />
-          {errors.confirm_password && (
-            <span className="text-red-700">Confirm password is required</span>
-          )}{" "}
+          <TbEye
+            onClick={handleConfirmPassword}
+            className={` inline -ml-7 text-2xl ${
+              confirmPasswordTrigger ? "hidden" : ""
+            }`}
+          />
+          <TbEyeClosed
+            onClick={handleConfirmPassword}
+            className={`inline -ml-7 text-2xl ${
+              confirmPasswordTrigger ? "" : "hidden"
+            }`}
+          />
+          {errors.password && (
+            <p className="text-red-700">{errors.confirm_password.message}</p>
+          )}
           <br />
           <input
-            {...register("email", { required: true })}
-            placeholder="Email"
             type="email"
-            className="w-64 md:w-80 h-10 px-2 rounded"
+            placeholder="Email"
+            {...register("email", {
+              required: "Email is required",
+            })}
+            className="w-64 md:w-80 h-10 px-2 rounded  mt-2"
           />
+          {errors.username && (
+            <p className="text-red-700">{errors.email.message}</p>
+          )}
           <br />
-          {errors.email && (
-            <span className="text-red-700">Email is required</span>
-          )}{" "}
-          <br />
-          <label htmlFor="">Insert Your Image</label>
+          <p className="mt-2 -mb-6" htmlFor="">Insert Your Image</p>
           <br />
           <input
-            {...register("userImage")}
             type="file"
-            className="file-input file-input-bordered w-64 md:w-80 h-10 text-white mb-6"
-          />{" "}
+            {...register("username", {
+            })}
+            className="file-input file-input-bordered w-64 md:w-80 h-10 text-white"
+          />
+
           <br />
-          <label className="text-xl">
+          <p className="text-xl mt-3">
             <LoadCanvasTemplate />
-          </label>
+          </p>
           <br />
           <input
             {...register("captcha", { required: true })}
-            className=" w-64 h-9 pl-3 text-lg rounded-sm"
+            className=" w-64 h-9 pl-3 text-lg rounded-sm -mt-4"
             type="text"
             placeholder="Enter Captcha"
           />
@@ -196,10 +235,15 @@ const Register = () => {
           <input
             type="submit"
             value="Register"
-            className="mt-5 btn bg-cyan-800 text-white"
+            className="mt-10 btn bg-cyan-800 text-white"
           />
         </form>
-        <p className="mt-8">Already have an account?<Link className="underline" to="/login">Login now</Link></p>
+        <p className="mt-8">
+          Already have an account?
+          <Link className="underline" to="/login">
+            Login now
+          </Link>
+        </p>
       </div>
     </div>
   );
